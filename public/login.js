@@ -35,16 +35,16 @@ function Login(){
       status={status}
       body={show ? (  
               <>
-              Email<br/>
-              <input type="input" className="form-control" id="name" placeholder="Enter email" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
+             Email address<br/>
+              <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
               password<br/>
              <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-              <button type="submit" className="btn btn-light" onClick={handleCreate}>Login</button>
+              <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
               </>
             ):(
               <>
               <h5>Success</h5>
-              <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
+              <button type="submit" className="btn btn-light" onClick={clearForm}>Login successfull</button>
               </>
             )}
     />
