@@ -1,4 +1,4 @@
-function withdraw(){
+function Withdraw(){
   const [show, setShow]         = React.useState(true);
   const [status, setStatus]     = React.useState('');
   const [withdrawAmount, setWithdrawAmount] = React.useState('');
@@ -13,7 +13,7 @@ function withdraw(){
       return true;
   }
 
-  function handleWithDraw(){
+  function handleWithdraw(){
     console.log(balance,withdrawAmount);
     if (!validate(withdrawAmount, 'Withdraw Amount')) return;
     ctx.users.push({withdrawAmount,balance:100});
@@ -31,16 +31,17 @@ function withdraw(){
       bgcolor="success"
       header="Withdraw"
       status={status}
-      body={show ? (  
-              <>
+      body={show ? (
+               <>
+              Balance         $100 <br/>
               Withdraw Amount<br/>
-              <input type="input" className="form-control" id="withdrawAmount" placeholder="Withdraw" value={withdrawAmount} onChange={e => setWithdrawAmount(e.currentTarget.value)} /><br/>      
-              <button type="submit" className="btn btn-light" onClick={handleWithDraw}>Withdraw</button>
+              <input type="input" className="form-control" id="withdrawAmount" placeholder="Withdraw Amount" value={withdrawAmount} onChange={e => setWithdrawAmount(e.currentTarget.value)} /><br/>    
+              <button type="submit" className="btn btn-light" onClick={handleWithdraw}>Withdraw</button>
               </>
             ):(
               <>
               <h5>Success</h5>
-              <button type="submit" className="btn btn-light" onClick={clearForm}>Withdraw success</button>
+              <button type="submit" className="btn btn-light" onClick={clearForm}>Withdraw successfull</button>
               </>
             )}
     />

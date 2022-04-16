@@ -1,7 +1,7 @@
 function Deposit(){
   const [show, setShow]         = React.useState(true);
   const [status, setStatus]     = React.useState('');
-  const [depositAmount, setDepositAmount] = React.useState('');
+  const [deposit, setDeposit] = React.useState('');
   const ctx = React.useContext(UserContext);  
 
   function validate(field, label){
@@ -14,8 +14,9 @@ function Deposit(){
   }
 
   function handleDeposit(){
-    console.log(balance,depositAmount);
-    if (!validate(depositAmount, 'Deposit Amount')) return;
+    console.log(balance,deposit);
+    //balance = balance - deposit;
+    if (!validate(deposit, 'Deposit Amount')) return;
     ctx.users.push({depositAmount,balance:100});
     setShow(false);
   }    
@@ -33,14 +34,16 @@ function Deposit(){
       status={status}
       body={show ? (  
               <>
+               {/* Balance         <br/> */}
+              {/* <input type="input" className="form-control" id="balance" placeholder="" value={balance-depositAmount} onChange={e => setBalance(balance)} /><br/> */}
               Deposit Amount<br/>
-              <input type="input" className="form-control" id="depositAmount" placeholder="Deposit" value={depositAmount} onChange={e => setDepositAmount(e.currentTarget.value)} /><br/>      
+              <input type="input" className="form-control" id="deposit" placeholder="Deposit Amount" value={deposit} onChange={e => setDeposit(e.currentTarget.value)} /><br/>      
               <button type="submit" className="btn btn-light" onClick={handleDeposit}>Deposit</button>
               </>
             ):(
               <>
               <h5>Success</h5>
-              <button type="submit" className="btn btn-light" onClick={clearForm}>Deposit success</button>
+              <button type="submit" className="btn btn-light" onClick={clearForm}>Deposit successfull</button>
               </>
             )}
     />
