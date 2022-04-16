@@ -3,7 +3,9 @@
 
 # Description:
 This is a web app to where the user can create an account, login, deposit and withdraw. 
+#
 Outcome is as follows
+#
 •	Build, test, and deploy a React application
 •	Design and build UI components using React
 
