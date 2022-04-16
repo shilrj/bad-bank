@@ -1,7 +1,7 @@
 function Withdraw(){
   const [show, setShow]         = React.useState(true);
-  const [status, setStatus]     = React.useState('');
-  const [withdrawAmount, setWithdrawAmount] = React.useState('');
+  const [status, setStatus]     = React.useState(''); 
+  const [withdraw, setWithdraw]       = React.useState(''); 
   const ctx = React.useContext(UserContext);  
 
   function validate(field, label){
@@ -14,28 +14,28 @@ function Withdraw(){
   }
 
   function handleWithdraw(){
-    console.log(balance,withdrawAmount);
-    if (!validate(withdrawAmount, 'Withdraw Amount')) return;
-    ctx.users.push({withdrawAmount,balance:100});
+    console.log(withdraw);
+    if (!validate(withdraw,    'withdraw'))    return;
+    ctx.users.push({withdraw,balance:100});
     setShow(false);
   }    
 
   function clearForm(){
-    setEmail('');
+    setName('');
+    setWithdraw('');
     setPassword('');
     setShow(true);
   }
 
   return (
     <Card
-      bgcolor="success"
+      bgcolor="primary"
       header="Withdraw"
       status={status}
-      body={show ? (
-               <>
-              Balance         $100 <br/>
-              Withdraw Amount<br/>
-              <input type="input" className="form-control" id="withdrawAmount" placeholder="Withdraw Amount" value={withdrawAmount} onChange={e => setWithdrawAmount(e.currentTarget.value)} /><br/>    
+      body={show ? (  
+              <>
+              withdraw amount<br/>
+              <input type="input" className="form-control" id="withdraw" placeholder="Enter Withdraw" value={withdraw} onChange={e => setWithdraw(e.currentTarget.value)}/><br/>
               <button type="submit" className="btn btn-light" onClick={handleWithdraw}>Withdraw</button>
               </>
             ):(
