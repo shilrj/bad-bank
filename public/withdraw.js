@@ -4,7 +4,7 @@ function Withdraw(){
 
   return (
     <Card
-      bgcolor="primary"
+      bgcolor="success"
       header="Withdraw"
       status={status}
       body={show ? 
@@ -14,11 +14,25 @@ function Withdraw(){
   )
 }
 
-function WithdrawForm(props){  
-  const [amount, setAmount] = React.useState('');
+function WithdrawMsg(props){
+  return(<>
+    <h5>Success</h5>
+    <button type="submit" 
+      className="btn btn-light" 
+      onClick={() => {
+        props.setShow(true);
+        props.setStatus('');
+      }}>
+        Withdraw again
+    </button>
+  </>);
+}
+
+function WithdrawForm(props){
+  const [withdraw, setWithdraw] = React.useState('');
 
   function handle(){
-    fetch(`/account/update/-${amount}`)
+    fetch(`/account/update/-${withdraw}`)
     .then(response => response.text())
     .then(text => {
         try {
@@ -27,17 +41,26 @@ function WithdrawForm(props){
             props.setShow(false);
             console.log('JSON:', data);
         } catch(err) {
-            props.setStatus('Withdraw success')
+            props.setStatus('Deposit failed')
             console.log('err:', text);
         }
     });
   }
 
 
-  return(
-    <>
+  return(<>
     Withdraw Amount<br/>
-    <input type="number" className="form-control" placeholder="Withdraw Amount" value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
-    <button type="submit" className="btn btn-light" onClick={handle}>Withdraw</button>
+    <input type="number" 
+      className="form-control" 
+      placeholder="Withdraw" 
+      value={withdraw} 
+      onChange={e => setWithdraw(e.currentTarget.value)}/><br/>
+
+    <button type="submit" 
+      className="btn btn-light" 
+      onClick={handle}>
+        Withdraw
+    </button>
+
   </>);
 }
